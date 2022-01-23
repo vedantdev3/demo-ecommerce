@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Warning !! ensure that "stylesheet_pack_tag" is used, line below -->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #91d1ff;">
+<!-- Container wrapper -->
+<div class="container">
+  <!-- Navbar brand -->
+  <a class="navbar-brand me-2" href="http://localhost:3000/">
+    <strong>Rukman Shopping hub</strong>
+  </a>
+
+  <!-- Toggle button -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-mdb-toggle="collapse"
+    data-mdb-target="#navbarButtonsExample"
+    aria-controls="navbarButtonsExample"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Collapsible wrapper -->
+  <div class="collapse navbar-collapse" id="navbarButtonsExample">
+    <!-- Left links -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:3000/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="home/index">Dashboard</a>
+      </li>
+    </ul>
+    
+    <!-- Left links -->
+    <div class="d-flex align-items-center">
+      <% if user_signed_in? %>    
+        <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-primary me-3" %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary me-3"  %>
+      <% else %>  
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary me-3" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-primary me-3"  %>
+      <%end%>
+    </div>    
+  </div>
+  <!-- Collapsible wrapper -->
+</div>
+<!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+    <%= yield %>
+  </body>
+</html>
