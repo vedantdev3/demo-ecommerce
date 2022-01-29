@@ -14,3 +14,99 @@
     </div>
   </section>
 </main>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <% if current_user.role == 'Seller' %>
+        <th>Quatity</th>
+      <%end%>
+      <th>Weight</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.product_name, product%></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <% if current_user.role == 'Seller' %>
+          <td><%= product.quatity %></td>
+        <%end%>
+        <td><%= product.weight %></td>
+        <% if current_user.role == 'Seller' %>
+          <td><%= link_to 'Show', product %></td>
+          <td><%= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+        <td><%= link_to 'add to cart' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    My Cart
+  </h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"
+        ><a href="#!" class="text-success"
+          ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
+      ></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead class="table-info">
+          <tr>
+            <th class="text-center">S. No.</th>
+            <th class="text-center">Product Name</th>              
+            <th class="text-center">Description</th>
+            <th class="text-center">Price</th>
+            <% if current_user.role == 'Seller' %>
+              <th class="text-center">Quatity</th>
+            <%end%>
+            <th class="text-center">Weight</th>
+            <th class="text-center">Add to card</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product, i| %>
+          <tr>
+            <td class="pt-3-half" ><%= @products.index(product) + 1 %></td>
+            <td class="pt-3-half" ><%= link_to product.product_name, product%></td>
+            <td class="pt-3-half" ><%= product.description %></td>                    
+            <td class="pt-3-half" ><%= product.price %></td>
+            <% if current_user.role == 'Seller' %>
+              <td class="pt-3-half" ><%= product.quatity %></td>
+            <%end%>
+            <td class="pt-3-half" ><%= product.weight %></td>
+            <% if current_user.role == 'Seller' %>
+              <td><%= link_to 'Show', product %></td>
+              <td><%= link_to 'Edit', edit_product_path(product) %></td>
+              <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
+            <td>
+              <%= link_to 'Remove', remove_from_cart_path(cart_item: cart_item.id), method: :post, class:"btn btn-danger btn-sm my-0"%>
+            </td>           
+          </tr> 
+        <% end %>            
+        </tbody>
+      </table>
+      <hr>
+      <h3 style="float:right">Total cart value: <%= current_user.cart.total %></h3>
+    </div>
+  </div>
+</div>

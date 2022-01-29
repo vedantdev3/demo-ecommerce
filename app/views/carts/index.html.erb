@@ -1,0 +1,58 @@
+
+
+
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    My Cart
+  </h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"
+        ><a href="#!" class="text-success"
+          ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
+      ></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead class="table-info">
+          <tr>
+            <th class="text-center">S. No.</th>
+            <th class="text-center">Product</th>              
+            <th class="text-center">Quatity</th>
+            <th class="text-center">Total Price</th>
+            <th class="text-center">Remove Item</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cart_items.each do |cart_item, i| %>
+          <tr>
+            <td class="pt-3-half" ><%= @cart_items.index(cart_item) + 1 %></td>
+            <td class="pt-3-half" ><%= Product.find(cart_item.product_id).product_name %></td>
+            <td class="pt-3-half align-center">
+            <div class="col-lg-2 input-group"> &emsp; &emsp; &emsp;
+                <%= button_to "-",remove_one_path(cart_item: cart_item.id), method: :post, class: "quantity-left-minus btn btn-danger btn-number "%> &emsp;
+                <%= cart_item.quantity %>&emsp;
+                <%= button_to "+" ,add_more_path(cart_item: cart_item.id), method: :post, class: "quantity-right-plus btn btn-success btn-number"%> 
+              </div>
+            </td>
+            <td class="pt-3-half" ><%= cart_item.total %></td>
+            <td>
+              <%= link_to 'Remove', remove_from_cart_path(cart_item: cart_item.id), method: :post, class:"btn btn-danger btn-sm my-0"%>
+            </td>   
+          </tr> 
+        <% end %>            
+        </tbody>
+      </table>
+      <hr>
+      <h3 style="float:right">Total cart value: <%= current_user.cart.total %></h3>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Back', products_path %>
+
+
+
+
+
+
+

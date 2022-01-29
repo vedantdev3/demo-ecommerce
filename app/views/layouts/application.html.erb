@@ -25,7 +25,7 @@
 <div class="container">
   <!-- Navbar brand -->
   <a class="navbar-brand me-2" href="http://localhost:3000/">
-    <strong>Rukman Shopping hub</strong>
+    <strong>RukMan Shopping hub</strong>
   </a>
 
   <!-- Toggle button -->
@@ -56,6 +56,7 @@
     <!-- Left links -->
     <div class="d-flex align-items-center">
       <% if user_signed_in? %>    
+        <%= link_to 'My Cart', carts_path, class: "btn btn-primary me-3"%>
         <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-primary me-3" %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary me-3"  %>
       <% else %>  
