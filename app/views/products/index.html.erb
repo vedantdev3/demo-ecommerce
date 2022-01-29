@@ -16,7 +16,6 @@
           <tr>
             <th class="text-center">S. No.</th>
             <th class="text-center">Product Name</th>              
-            <th class="text-center">Description</th>
             <th class="text-center">Price</th>
             <% if current_user.role == 'Seller' %>
               <th class="text-center">Quatity</th>
@@ -29,8 +28,7 @@
         <% @products.each do |product, i| %>
           <tr>
             <td class="pt-3-half" ><%= @products.index(product) + 1 %></td>
-            <td class="pt-3-half" ><%= link_to product.product_name, product%></td>
-            <td class="pt-3-half" ><%= product.description %></td>                    
+            <td class="pt-3-half" ><%= link_to product.product_name, product%></td>                    
             <td class="pt-3-half" ><%= product.price %></td>
             <% if current_user.role == 'Seller' %>
               <td class="pt-3-half" ><%= product.quatity %></td>

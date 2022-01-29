@@ -1,29 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
+<section class="vh-100" style="background-color: #eee;">
+<div class="container h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-12 col-xl-11">
+      <div class="card text-black" style="border-radius: 25px;">
+        <div class="card-body p-md-5">
+          <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+              <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><%= @product.product_name %></p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example1c"><h4><strong>Price&ensp;:&ensp; </strong> <%= @product.price %> Rs.</h4></label>                 
+                </div>
+              </div>
 
-<p>
-  <strong>Quatity:</strong>
-  <%= @product.quatity %>
-</p>
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example1c"><h4><strong>Weight&ensp;:&ensp; </strong> <%= @product.weight %></h4></label>                 
+                </div>
+              </div>
+              <% if current_user.role == 'Seller' %>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example1c"><h4><strong>Quantity&ensp;:&ensp; </strong> <%= @product.quatity %></h4></label>                 
+                  </div>
+                </div>
+              <%end%>
+              <div class="d-flex flex-row align-items-center mb-4">
+                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                <div class="form-outline flex-fill mb-0">
+                  <label class="form-label" for="form3Example1c"><h4><strong>Description&ensp;:&ensp; </strong></h4></label>  
+                  <p><%= @product.description %></p>
+                </div>
+              </div>
+              
 
-<p>
-  <strong>Weight:</strong>
-  <%= @product.weight %>
-</p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+
+              <% if current_user.role == 'Seller' %>
+                <%= link_to 'Edit', edit_product_path(@product) %>
+              <%end%>
+              
+              
+              <%= link_to 'Back', products_path %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
