@@ -14,12 +14,10 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
-    ref = 1
   end
 
   # GET /products/1/edit
   def edit
-    ref = 2
   end
 
   # POST /products or /products.json

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'orders/index'
   get 'carts/index'
   get 'carts/show'
   devise_for :users
@@ -16,6 +17,12 @@ Rails.application.routes.draw do
       get :new_item
       get 'carts/index',to: 'carts#index'
     end
+  end
+
+  resources :orders do
+    member do 
+     
+    end    
   end
 
   post :remove_one, to: 'carts#remove_one'

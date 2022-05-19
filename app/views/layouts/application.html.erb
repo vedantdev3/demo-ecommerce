@@ -57,6 +57,7 @@
     <div class="d-flex align-items-center">
       <% if user_signed_in? %>    
         <%= link_to 'My Cart', carts_path, class: "btn btn-primary me-3"%>
+        <%= link_to 'My Order',carts_path, class: "btn btn-primary me-3"%>
         <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-primary me-3" %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary me-3"  %>
       <% else %>  

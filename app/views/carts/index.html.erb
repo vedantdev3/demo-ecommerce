@@ -41,7 +41,8 @@
         </tbody>
       </table>
       <hr>
-      <h3 style="float:right">Total cart value &ensp;:&ensp;Rs. <%= current_user.cart.total %></h3>
+      <h3 style="float:right">Total cart value &ensp;:&ensp;Rs. <%= current_user.cart.total %></h3> <br><br><br>
+      <h3 style="float:right"><%= link_to 'Proceed to checkout',new_order_path, class: "btn btn-primary me-3"%></hr3>
     </div>
   </div>
 </div>
